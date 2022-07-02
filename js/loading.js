@@ -1,8 +1,20 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+PARAM_SPEED = urlParams.get("speed");
+
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
 let w;
 let h;
+
+
+DEFAULT_SPEED = 0.25
+if (PARAM_SPEED) {
+  CONST_SPEED = PARAM_SPEED;
+} else {
+  CONST_SPEED = DEFAULT_SPEED
+}
 
 const setCanvasExtents = () => {
   w = document.body.clientWidth;
@@ -71,7 +83,7 @@ const tick = (time) => {
   let elapsed = time - prevTime;
   prevTime = time;
 
-  moveStars(elapsed * 0.25);
+  moveStars(elapsed * CONST_SPEED);
 
   clear();
 
